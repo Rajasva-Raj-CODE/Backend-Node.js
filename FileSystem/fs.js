@@ -2,13 +2,13 @@
 
 //?to interact with OS and perform CRUD on files and folders/directory
 
-//*import fs module first   
+//*import fs module first
 //*syntax --> let/const variableName = require("node:module-name")
 
 let fs = require("fs");
 
 //todo<--------------------> synchronous way or blocking way <-------------------->
-//!1) =========================read file sync==================== 
+//!1) =========================read file sync====================
 // *method name == readFileSync()
 // *syntax == fs.readFileSync("path", "encoding" )
 
@@ -16,14 +16,14 @@ let fs = require("fs");
 
 // console.log("start");
 // console.log("middle");
-// let data = fs.readFileSync("./data.txt","utf-8") 
+// let data = fs.readFileSync("./data.txt","utf-8")
 // console.log(data);
 
 // console.log("end");
 
-//!2) =========================write file sync==================== 
+//!2) =========================write file sync====================
 //* method name == writeFileSync()
-//* syntax == fs.writeFileSync("path", "data" ) 
+//* syntax == fs.writeFileSync("path", "data" )
 
 // console.log("start");
 // console.log("middle");
@@ -54,7 +54,6 @@ let fs = require("fs");
 // fs.unlinkSync("./index.txt")
 // console.log("end");
 
-
 //* <<-------------------COPY THE CONTENTS OF "fs.js" to a new file "home.js"------------->>>
 
 // console.log("start");
@@ -65,7 +64,6 @@ let fs = require("fs");
 // console.log("end");
 
 //todo<-------------------->  CRUD on folders  <-------------------->
-
 
 //! 1) creating a folder
 
@@ -98,6 +96,97 @@ let fs = require("fs");
 
 //!                           "backend/src/controllers/user.js" ==> nested operation (creation)
 
+// fs.mkdirSync("../backend")
+// console.log("backend folder created");
+
+// fs.mkdirSync("../backend/src")
+// console.log("src folder created");
+
+// fs.mkdirSync("../backend/src/controller")
+// console.log("controller folder created");
+
+// fs.mkdirSync("../backend/src/controller/user")
+// console.log("user folder created");
+
+// fs.writeFileSync("../backend/src/controller/user/user.js","hello")
+// console.log("user file created");
+
+//!                           "backend/src/controllers/user.js" ==> nested operation (deletion)
+
+// fs.unlinkSync("../backend/src/controller/user/user.js")
+// console.log("user file deleted");
+// fs.rmdirSync("../backend/src/controller/user")
+// fs.rmdirSync("../backend/src/controller")
+// fs.rmdirSync("../backend/src")
+// fs.rmdirSync("../backend")
+
+//todo                           ================================Async Execution================================
+
+// *==> using callback
+// *==> using then catch
+// *==> using async await
+
+//!       ==========================async using callbacks=====================
+//! 1) Creating File------------------>>>>>>>>
+//* method name ==> writefile()
+//* syntax ==> fs.writeFile("path","data",cb)
+
+// console.log("start");
+// console.log("middle");
+// error first callback
+// fs.writeFile("index.html", "this is first statement", (err) => {
+//   if (err) console.log(err);
+//   console.log("file created");
+// });
+// console.log("end");
+//! 2) reading File------------------>>>>>>>>
+//* method name ==> readFile()
+//* syntax ==> fs.readFile("path","encoding",cb)
+
+// console.log("start");
+// console.log("middle");
+// fs.readFile("fs.js","utf-8",(err,mydata)=>{
+//     if(err) throw err
+//     console.log("file  read");
+//     console.log(mydata)
+// })
+// console.log("end");
+
+//! 3) update or append  File------------------>>>>>>>>
+//* method name ==> appendFile()
+//* syntax ==> fs.appendFile("path","data",cb)
+
+// console.log("start");
+// console.log("middle");
+// fs.appendFile("index.html","this is second statemnt",(err)=>{
+//     if(err) throw err
+//     console.log("file upated");
+// })
+// console.log("end");
 
 
+//! 4) Deleting  File------------------>>>>>>>>
+//* method name ==> unlink()
+//* syntax ==> fs.unlink("path",cb)
+
+// console.log("start");
+// console.log("middle");
+// fs.unlink("index.html",(err)=>{if(err) throw err
+//     console.log("deleted");
+    
+// })
+// console.log("end");
+
+
+
+//! 5)CREATING A FOLDER ------------------>>>>>>>>
+//* method name ==> mkdir()
+//* syntax ==> fs.mkdir("path",cb)
+
+// fs.mkdir("../kya hai bae",()=>{
+//     console.log("foldercreated");
+    
+// })
+
+//todo                        ============================Using then catch block============================
 
