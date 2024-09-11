@@ -33,7 +33,7 @@ server.listen(3000,(err)=>{
 
 //! ========================= sending html contents ==================
 
-let https = require("node:http");
+// let https = require("node:http");
 // let fs = require("fs");
 
 //? sending html contents
@@ -73,30 +73,65 @@ let https = require("node:http");
 
 //! routing ==> to handle multiple routes requested by user based on the endpoints
 
+// let server = https.createServer((req, res) => {
+//   // console.log(req.url);
+
+//   // //? by default landing page url === /
+//   //! routing
+//   //? home page
+//   if(req.url==="/"){
+//     res.writeHead(200,"ok",{"content-type":"text/plain"})
+//     res.end("home page")
+//   }
+//   else if(req.url==="/about"){
+//     res.writeHead(200,"ok",{"content-type":"text/plain"})
+//     res.end("about page")
+//   }
+//   else if(req.url==="/download"){
+//     res.writeHead(200,"ok",{"content-type":"text/plain"})
+//     res.end("download page")
+//   }
+//    else{
+//     res.end("page not found")
+//    }
+// });
+
+// server.listen(9000, (err) => {
+//   if (err) throw err;
+//   console.log("server is running");
+// });
+
+// ! routing with sending html pages =================
+
+let https = require("http");
+let fs = require("fs");
+
 let server = https.createServer((req, res) => {
-  // console.log(req.url);
+  if (req.url === "/") {
+    res.writeHead(200, "ok", { "content-type": "text/html" });
+    fs.createReadStream("./public/home.html").pipe(res);
+  } else if (req.url === "/about") {
+    res.writeHead(200, "ok", { "content-type": "text/plain" });
+    fs.createReadStream("./public/about.html").pipe(res);
+  }else if (req.url === "/download") {
+    res.writeHead(200, "ok", { "content-type": "text/plain" });
+    fs.createReadStream("./public/download.html").pipe(res);
+  }
+  else if (req.url === "/style") {
+    res.writeHead(200, "ok", { "content-type": "text/plain" });
+    fs.createReadStream("./public/style.css").pipe(res);
+  }
+  else if (req.url === "/data") {
+    res.writeHead(200, "ok", { "content-type": "application/json" });
+    fs.createReadStream("./public/data.json").pipe(res);
+  }else{
+    res.writeHead(200,"ok",{"content-type":"text/html"})
+    fs.createReadStream("./public/404.html").pipe(res)
+  }
 
-  // //? by default landing page url === /
-  //! routing
-  //? home page
-  if(req.url==="/"){
-    res.writeHead(200,"ok",{"content-type":"text/plain"})
-    res.end("home page")
-  }
-  else if(req.url==="/about"){
-    res.writeHead(200,"ok",{"content-type":"text/plain"})
-    res.end("about page")
-  }
-  else if(req.url==="/download"){
-    res.writeHead(200,"ok",{"content-type":"text/plain"})
-    res.end("download page")
-  }
-   else{
-    res.end("page not found")
-   }
 });
-
-server.listen(9000, (err) => {
-  if (err) throw err;
-  console.log("server is running");
-});
+server.listen(9000,(err)=>{
+    if(err) throw err;
+    console.log("server running.............");
+    
+})
