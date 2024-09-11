@@ -233,14 +233,14 @@ let fs = require("fs").promises;
 //*  method name => appendFile()
 //* syntax => fs.appendFile().then().catch()
 
-fs.appendFile("./copy.txt","data to be added")
-.then(()=>{
-    console.log("file added");  
-})
-.catch((err)=>{
-    console.log(err);
+// fs.appendFile("./copy.txt","data to be added")
+// .then(()=>{
+//     console.log("file added");  
+// })
+// .catch((err)=>{
+//     console.log(err);
     
-})
+// })
 //! 4) delete a file------------------>>>>>>>>
 
 //* method name => unlink()
@@ -269,3 +269,19 @@ fs.appendFile("./copy.txt","data to be added")
 // })
 
 //deleting a folder,rename file / folder
+
+
+//?                                     ========================using async await===============================
+
+//! 1) creating a file
+
+console.log("start");
+async function write () {
+    console.log("inside async/await");
+    await fs.writeFile("./index.html","data")
+    console.log("bye");
+}
+console.log("end");
+write()
+
+
