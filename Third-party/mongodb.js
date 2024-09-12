@@ -32,9 +32,9 @@ let connectDB = async () => {
   //! CRUD operations==============
 
   //? 1 ) create/insert ==> insertOne() / insertMany()
-  collection.insertOne({ name: "abc" });
-  collection.insertMany([{ name: "xyz" }, { name: "pqr" }]);
-  console.log("data added");
+  // collection.insertOne({ name: "abc" });
+  // collection.insertMany([{ name: "xyz" }, { name: "pqr" }]);
+  // console.log("data added");
 
   //? 2) read/fetch ==> findOne({filter}) / find({filter})
   // let data = await collection.findOne(); //* it will fetch the first document present in the collection
@@ -42,7 +42,7 @@ let connectDB = async () => {
   // console.log(data);
 
    // let data = await collection.find().toArray(); //* whenever using find() display the data in array format.
-  // let data = await collection.findOne({ sal: 2500 });
+  // let data = await collection.findOne({ name: "abc" });
   // console.log(data)
 
    //? 3) update data ==> updateOne({filter}, {updated value}) / updateMany({filter}, {updated value})
@@ -50,6 +50,8 @@ let connectDB = async () => {
   //   { name: "xyz" },
   //   { $set: { name: "new name", age: 23, city: "mumbai" } }
   // );
+  // console.log(updatedData);
+  
 
   // let data = await collection.updateMany({ sal: 2500 }, { $set: { havingInsurance: false } });
 
